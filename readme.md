@@ -7,5 +7,5 @@ After this type 'pip3 install -r requirements.txt' and hit enter. This will inst
 needed libraries. After this you will be able to run download_videos.py.  
 
 When you run this script it will download ALL videos from r/combatfootage in same directory as the python script. 
-Files will be named by the reddit post ID. In order to go to the original reddit post enter reddit.it/*insert post ID* 
+Files will be named by the reddit post ID. In order to go to the original reddit post enter reddit.it/\*insert post ID* 
 from filename into browser without the * . 
