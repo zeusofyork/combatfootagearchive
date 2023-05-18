@@ -1,4 +1,5 @@
 #installation
+
 After you have installed python you will need to download a few python
 libraries to sucessfully run the download_videos.py file. Open powershell/cmd (windows)
 or terminal (linux) in the directory that has the download_videos.py and requirements.txt files.
