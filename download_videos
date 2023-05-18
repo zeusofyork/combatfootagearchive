@@ -1,0 +1,34 @@
+import praw
+import requests
+
+# Initialize the Reddit API client
+reddit = praw.Reddit(
+    client_id='YOUR_CLIENT_ID',
+    client_secret='YOUR_CLIENT_SECRET',
+    user_agent='YOUR_USER_AGENT',
+)
+
+# Specify the subreddit you want to download videos from
+subreddit_name = 'your_subreddit'
+
+# Get all posts from the subreddit
+subreddit = reddit.subreddit(subreddit_name)
+posts = subreddit.new(limit=None)  # Fetch all posts
+
+# Download videos from each post
+for post in posts:
+    # Check if the post has a video
+    if post.is_video:
+        video_url = post.media['reddit_video']['fallback_url']
+        # Remove the extension from the URL to get the filename
+        filename = video_url.split('/')[-1].split('?')[0]
+        print(f"Downloading video: {filename}")
+        
+        # Send a request to download the video
+        response = requests.get(video_url)
+        
+        # Save the video to a file
+        with open(filename, 'wb') as file:
+            file.write(response.content)
+        
+        print(f"Video downloaded: {filename}")
