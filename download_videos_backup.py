@@ -47,22 +47,5 @@ for post in posts:
             file.write(response.content)
             
 
-            '''
-            for item in post_content:
-                print(item)
-                
-                post_info.write(str(item))
-                post_info.write('\n')
-             '''   
-        
         print(f"Video downloaded: {filename}")
 
-
-        '''
-        # Save the video to a file
-        with open(filename, 'wb') as file:
-            file.write(response.content)
-        
-        print(f"Video downloaded: {filename}")
-        
-        '''
