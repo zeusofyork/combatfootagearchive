@@ -1,6 +1,9 @@
+import datetime
+
 import praw
 import requests
 import os
+import datetime
 
 # Initialize the Reddit API client
 reddit = praw.Reddit(
@@ -29,8 +32,16 @@ while True:
             filename = str(post.id)
             print(f"Downloading video: {filename}")
 
-            # Create a folder for each video using the filename if it doesn't exist
-            folder_name = os.path.join('downloads', filename)
+            # Get the UTC timestamp of the post in from unix timestamp, formatted to ISO8601 datetime, and truncated to the date as a string.
+            time = post.created_utc
+            date = datetime.date.fromtimestamp(time)
+            # Create a folder for the date the video was uploaded if it doesn't exist. To make search or sorting by date easy.
+            date_folder = os.path.join('downloads', str(date))
+            if not os.path.exists(date_folder):
+                os.makedirs(date_folder, exist_ok=True)
+
+            # Create a folder for each video using the filename if it doesn't exist. The folder is stored underneath the date folder.
+            folder_name = os.path.join(date_folder, filename)
             if os.path.exists(folder_name):
                 choice = input(f"The folder '{folder_name}' already exists. Do you want to skip? (y/n): ")
                 if choice.lower() == 'y':
