@@ -1,4 +1,3 @@
-import datetime
 import praw
 import requests
 import os
